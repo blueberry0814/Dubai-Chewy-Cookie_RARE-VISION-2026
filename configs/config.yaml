@@ -1,0 +1,58 @@
+data:
+  root_dir: "./data/galar_dataset"
+  features_dir: "./features"             # Directory to save extracted DINOv2 features
+  labels_dir: "./data/galar_dataset/Labels"
+  window_size: 512                        # Number of frames per sliding window
+  stride: 256                             # Window stride during training
+  infer_stride: 128                       # Window stride during inference (denser coverage)
+  image_size: 336                         # Input image resolution for DINOv2
+
+model:
+  dinov2_model: "dinov2_vits14"          # "dinov2_vits14" (384-dim) or "dinov2_vitb14" (768-dim)
+  feat_dim: 384                           # DINOv2-small=384, DINOv2-base=768
+  hidden_dim: 512                         # Internal hidden dimension
+  n_heads: 8                              # Multi-head attention heads
+  n_layers: 2                             # Number of Windowed Self-Attention layers
+  attn_window: 32                         # Local attention window size
+  max_seq_len: 512                        # Keep equal to window_size
+  sim_threshold: 0.7                      # Cosine similarity threshold for GCN adjacency
+  dropout: 0.1                            # Dropout rate for attention and classification heads
+
+training:
+  batch_size: 4
+  num_epochs: 200
+  warmup_epochs: 5                        # Number of linear warmup epochs
+  lr: 1.5e-4
+  weight_decay: 1.0e-4
+  grad_clip: 5.0
+  focal_gamma: 2.0                        # Reference only (pathology uses ASL)
+  focal_alpha: 0.75                       # Reference only
+  asl_gamma_pos: 1.0                      # ASL positive focusing (low to preserve gradients)
+  asl_gamma_neg: 4.0                      # ASL negative focusing (high to suppress easy negatives)
+  asl_clip: 0.05                          # Probability floor for negatives (suppresses false negatives)
+  anatomy_loss_weight: 1.0
+  pathology_loss_weight: 3.0             # Higher weight for pathology to address class imbalance
+  proto_loss_weight: 0.1                 # Prototype auxiliary loss weight
+  proto_momentum: 0.99                   # EMA momentum for pathology prototypes
+  smooth_loss_weight: 0.1               # Temporal smoothness loss weight
+  anatomy_cluster_loss_weight: 0.1      # Anatomy prototype clustering loss weight
+  transition_loss_boost: 3.0           # Extra loss weight for frames near anatomy transitions (±2 frames)
+  anatomy_proto_momentum: 0.99          # EMA momentum for anatomy prototypes (hidden space)
+  mask_ratio: 0.15                       # Random temporal masking ratio (train only)
+  feat_noise_std: 0.01                   # Feature-level Gaussian noise std (train only, 0=off)
+  mixup_alpha: 0.0                       # Sequence Mixup Beta distribution alpha (0=off)
+  mixup_prob: 0.0                        # Mixup application probability per batch
+  val_ratio: 0.2                         # Validation split ratio (by video count, 0.0 = full data training)
+  seed: 42
+  device: "cuda"
+  num_workers: 4
+  save_dir: "./checkpoints"
+  warmstart_checkpoint: ""              # Path to previous checkpoint for warm start (empty = train from scratch)
+  log_interval: 10                       # Print loss every N steps
+
+inference:
+  checkpoint: "./checkpoints/best_model.pth"
+  output_dir: "./results"
+  threshold: 0.3                         # Binarization threshold for predictions
+  smooth_window: 5                       # Median filter kernel size for post-processing
+  batch_size: 1

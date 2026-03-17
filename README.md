@@ -1,5 +1,4 @@
 
-
 **ICPR 2026 RARE-VISION Competition — Team: Dubai Chewy Cookie**
 
 Anatomy-guided temporal multi-label classification for Video Capsule Endoscopy (VCE).

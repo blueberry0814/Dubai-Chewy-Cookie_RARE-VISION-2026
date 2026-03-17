@@ -1,4 +1,4 @@
-![그림4](https://github.com/user-attachments/assets/1a6cd6ed-bf79-4fa0-958c-4f017fc7d92b)# GALAR-TemporalNet
+
 
 **ICPR 2026 RARE-VISION Competition — Team: Dubai Chewy Cookie**
 

@@ -4,8 +4,7 @@
 Anatomy-guided temporal multi-label classification for Video Capsule Endoscopy (VCE).
 Classifies 17 classes per frame: 8 anatomical regions + 9 pathological findings.
 
-![깃그림2](https://github.com/user-attachments/assets/f39a825a-4b06-4120-ab70-ef16562759c0)
-
+![깃그림2](https://github.com/user-attachments/assets/51a09c0d-ec64-4ba8-b2bc-cb7691993690)
 
 
 ![그림1](https://github.com/user-attachments/assets/be7df93b-4a06-40fb-bd05-0e49ea6af933)

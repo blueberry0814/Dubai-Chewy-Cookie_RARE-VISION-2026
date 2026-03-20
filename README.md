@@ -5,6 +5,10 @@ Anatomy-guided temporal multi-label classification for Video Capsule Endoscopy (
 Classifies 17 classes per frame: 8 anatomical regions + 9 pathological findings.
 
 
+![깃그림2](https://github.com/user-attachments/assets/27952538-9a4f-404d-b3ca-85d48d61e767)
+
+
+
 ![그림1](https://github.com/user-attachments/assets/be7df93b-4a06-40fb-bd05-0e49ea6af933)
 
 ---

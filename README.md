@@ -1,6 +1,11 @@
 
 ## ICPR 2026 RARE-VISION Competition — Team: Dubai Chewy Cookie
 
+> [!NOTE]
+> This repository will be updated as the code and methodology 
+> continue to evolve in pursuit of higher performance.
+
+
 Anatomy-guided temporal multi-label classification for Video Capsule Endoscopy (VCE).
 Classifies 17 classes per frame: 8 anatomical regions + 9 pathological findings.
 
